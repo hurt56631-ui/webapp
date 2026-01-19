@@ -3384,12 +3384,12 @@ ul.tabbar li.active > a {
   align-items: center;
   flex: none;
   background-color: var(--clr-audio-bg);
-  height: 3rem;
-  border-radius: 1.5rem;
+  height: 7rem;
+  border-radius: 2.5rem;
 }
 
 .audio canvas {
-  width: 14rem;
+  width: 12rem;
   height: 2.6rem;
   margin-right: 2rem;
 }
@@ -3408,8 +3408,9 @@ ul.tabbar li.active > a {
 }
 
 .audio-player .material-icons.large {
-  font-size: 2.4rem;
+  font-size: 3.5rem;
   color: var(--clr-audio-icon);
+  margin: 0 0.8rem;  /* << 新增：给图标左右增加间距，这样就不挤了 */
 }
 
 .audio-player .material-icons.disabled {
@@ -3418,7 +3419,7 @@ ul.tabbar li.active > a {
 }
 
 .audio-player .playback {
-  width: 14rem;
+  width: 12rem;
   height: 2.6rem;
 }
 
@@ -3437,6 +3438,7 @@ ul.tabbar li.active > a {
 .audio-player .timer {
   font-size: smaller;
   color: var(--clr-audio-timer-text);
+  margin-left: 0.5rem; /* << 新增：防止时间数字贴着按钮 */
 }
 
 /* Pinned messages */
