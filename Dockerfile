@@ -1,31 +1,32 @@
 # ========= Stage 1: build =========
-FROM node:18-alpine AS builder
+FROM node:18-bullseye AS builder
 
 WORKDIR /app
 
-# 先复制依赖文件，利用 Docker 缓存
+# 1. 安装系统级依赖（解决 postcss 等工具报错）
+RUN apt-get update && apt-get install -y python3 make g++
+
+# 2. 复制依赖文件
 COPY package*.json ./
-# 安装编译依赖
+
+# 3. 安装所有依赖（包含开发依赖）
 RUN npm install
 
-# 复制前端所有源码
+# 4. 复制源码
 COPY . .
 
-# 执行构建逻辑（Tinode 源码通常产出到 build 文件夹）
-RUN npm run build
+# 5. 执行构建（增加内存限制，防止 OOM 崩溃）
+NODE_OPTIONS="--max-old-space-size=2048" RUN npm run build:prod
 
 # ========= Stage 2: nginx =========
 FROM nginx:alpine
 
-# 删除 Nginx 默认的欢迎页配置
 RUN rm /etc/nginx/conf.d/default.conf
-
-# 拷贝你之前创建的 nginx.conf 到容器
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# 【核心修正】将路径从 /app/dist 改为 /app/build
-# 如果构建依然报错找不到路径，请运行 ls -F 确认输出文件夹名称
-COPY --from=builder /app/build /usr/share/nginx/html
+# 根据 Tinode 官方逻辑，生产环境编译输出通常在 ./umd/ 文件夹
+# 如果 ./umd/ 报错，请尝试改成 ./ (根目录) 或 ./dist/
+COPY --from=builder /app/umd /usr/share/nginx/html
 
 EXPOSE 80
 
