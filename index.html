@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Tinode</title>
+<title>=== 我的测试 Tinode ===</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="application-name" content="Tinode Web" />
@@ -22,7 +22,41 @@
 <link rel="canonical" href="https://web.tinode.co/" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,700i" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<!-- 这里的 base.min.css 可能会被缓存，所以我们在下面手动注入样式 -->
 <link rel="stylesheet" href="css/base.min.css" />
+
+<!-- 🔥🔥🔥 核心修改：在这里直接强制修改 UI 样式 🔥🔥🔥 -->
+<style>
+  /* 1. 强制放大聊天输入框 */
+  #reply-text, textarea {
+      font-size: 20px !important; /* 字体变大 */
+      min-height: 60px !important; /* 高度变高 */
+  }
+
+  /* 2. 强制放大所有按钮 */
+  button {
+      transform: scale(1.2); /* 整体放大1.2倍 */
+      margin: 5px !important;
+  }
+
+  /* 3. 尝试去除图片的气泡背景 (针对常见的 image-bubble 类) */
+  .chat-bubble {
+      background-color: transparent !important; /* 背景透明 */
+      box-shadow: none !important; /* 去掉阴影 */
+  }
+  
+  /* 4. 调试标记：在页面顶部显示一个红条，证明代码生效了 */
+  body::before {
+      content: "代码已更新：界面强制优化版";
+      display: block;
+      background: red;
+      color: white;
+      text-align: center;
+      font-weight: bold;
+      z-index: 9999;
+  }
+</style>
+
 <script crossorigin="anonymous" src="https://polyfill-fastly.io/v3/polyfill.min.js?features=Intl.Segmenter"></script>
 <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"></script>
 <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
