@@ -3783,4 +3783,53 @@ div.toast.show {
     bottom: 8.5rem;
     border-radius: unset;
   }
+  /* =========================================
+   自定义美化补丁 (Added by User)
+   ========================================= */
+
+/* 1. 优化底部发送栏整体布局 */
+#send-message-panel {
+    gap: 15px !important; /* 增加按钮之间的间距 */
+    padding: 10px 15px !important;
+}
+
+/* 2. 美化录音按钮和其他图标按钮 */
+#send-message-panel .material-icons.secondary {
+    background-color: #f0f0f0 !important; /* 浅灰背景 */
+    color: #555 !important;
+    border-radius: 50% !important; /* 圆形 */
+    width: 45px !important;
+    height: 45px !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px !important;
+    transition: all 0.2s ease !important; /* 增加动画效果 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important; /* 轻微阴影 */
+}
+
+/* 3. 鼠标悬停时的效果 */
+#send-message-panel .material-icons.secondary:hover {
+    background-color: #e3f2fd !important; /* 悬停变浅蓝 */
+    color: #2196f3 !important; /* 图标变蓝 */
+    transform: scale(1.1) !important; /* 稍微放大 */
+    cursor: pointer;
+}
+
+/* 4. 正在录音时的状态 (变红) */
+#send-message-panel .material-icons.secondary.active,
+#send-message-panel .material-icons.secondary:active {
+    background-color: #ffebee !important;
+    color: #f44336 !important;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2) !important;
+}
+
+/* 5. 调整输入框高度 (配合按钮变大) */
+#send-message-input {
+    min-height: 45px !important;
+    border-radius: 20px !important; /* 输入框变圆角 */
+    padding-left: 15px !important;
+    background-color: #fff !important;
+    border: 1px solid #ddd !important;
+ }
 }
